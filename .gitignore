@@ -17,3 +17,7 @@ vendor/
 # Environment variables
 .env.development
 .env
+
+# IDE settings
+.idea
+.vscode
