@@ -1,5 +1,7 @@
 package main
 
+import "github.com/nickylogan/guestbook/internal/endpoint"
+
 func main() {
-	// TODO: add execute app
+	endpoint.Run()
 }

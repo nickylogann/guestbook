@@ -1,5 +1,7 @@
 package main
 
+import "github.com/nickylogan/guestbook/internal/visitor"
+
 func main() {
-	// TODO: add execute app
+	visitor.Run()
 }
