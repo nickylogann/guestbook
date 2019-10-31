@@ -10,17 +10,20 @@ import (
 	"github.com/labstack/echo"
 
 	"github.com/nickylogan/guestbook/internal/endpoint/usecase/user"
+	"github.com/nickylogan/guestbook/internal/endpoint/usecase/visitor"
 	"github.com/nickylogan/guestbook/internal/pkg/utils/template"
 )
 
 type UserHandler struct {
 	UUseCase user.UseCase
+	VUseCase visitor.UseCase
 }
 
 // NewUserHandler will initialize the user endpoint
-func NewUserHandler(e *echo.Echo, us user.UseCase) {
+func NewUserHandler(e *echo.Echo, us user.UseCase, vs visitor.UseCase) {
 	handler := &UserHandler{
 		UUseCase: us,
+		VUseCase: vs,
 	}
 	e.Renderer = template.NewRenderer("./web/templates/*.html", true)
 	e.GET("/", handler.Index)
@@ -42,44 +45,52 @@ func (u *UserHandler) Index(c echo.Context) error {
 		ctx = context.Background()
 	}
 
+	// Fetch users
 	userResp, err := u.UUseCase.FetchAll(ctx, filter, page)
 	if err != nil {
-		log.Println("[error][http][Index]", err)
+		log.Println("[error][http][Index] failed to fetch users:", err)
+		return c.HTML(http.StatusInternalServerError, err.Error())
+	}
+
+	// Fetch visitors
+	visitorResp, err := u.VUseCase.Visit(ctx)
+	if err != nil {
+		log.Println("[error][http][Index] failed to add visit:", err)
 		return c.HTML(http.StatusInternalServerError, err.Error())
 	}
 
 	type pageButton struct {
 		Page int
-		Url  string
+		URL  string
 	}
-
 	// Build page buttons
 	var pages []pageButton
 	for i := userResp.Start; i <= userResp.End; i++ {
 		pages = append(pages, pageButton{
 			Page: i,
-			Url:  buildUrl(req, i, filter),
+			URL:  buildURL(req, i, filter),
 		})
 	}
 
 	// Build prev/next url
-	nextUrl := buildUrl(req, page+1, filter)
-	prevUrl := buildUrl(req, page-1, filter)
+	nextURL := buildURL(req, page+1, filter)
+	prevURL := buildURL(req, page-1, filter)
 
 	data := map[string]interface{}{
 		"filter":   filter,
 		"users":    userResp.Data,
 		"nextPage": userResp.NextPage,
-		"nextUrl":  nextUrl,
+		"nextUrl":  nextURL,
 		"prevPage": userResp.PrevPage,
-		"prevUrl":  prevUrl,
+		"prevUrl":  prevURL,
 		"pages":    pages,
 		"page":     page,
+		"visitors": visitorResp,
 	}
 	return c.Render(http.StatusOK, "index.html", data)
 }
 
-func buildUrl(req *http.Request, page int, filter string) string {
+func buildURL(req *http.Request, page int, filter string) string {
 	q := url.Values{}
 
 	// Add page
