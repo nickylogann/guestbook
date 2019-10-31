@@ -10,7 +10,7 @@ func (b *postgresRepository) Fetch(ctx context.Context, count, offset int) (user
 	// Build query
 	q := `
 		SELECT
-			user_id, full_name, user_email, birth_date, create_time, update_time, 
+			user_id, full_name, user_email, msisdn, birth_date, create_time, update_time, 
 			date_part('year', age(birth_date)) as age
 		FROM ` + b.tableName + `
 		WHERE
@@ -36,7 +36,7 @@ func (b *postgresRepository) Fetch(ctx context.Context, count, offset int) (user
 	users = make([]models.User, 0)
 	for rows.Next() {
 		var user models.User
-		err = rows.Scan(&user.ID, &user.Name, &user.Email, &user.BirthDate, &user.CreatedAt, &user.UpdatedAt, &user.Age)
+		err = rows.Scan(&user.ID, &user.Name, &user.Email, &user.MSISDN, &user.BirthDate, &user.CreatedAt, &user.UpdatedAt, &user.Age)
 
 		users = append(users, user)
 	}
@@ -75,7 +75,7 @@ func (b *postgresRepository) FetchFilterName(ctx context.Context, name string, c
 	// Build query
 	q := `
 		SELECT
-			user_id, full_name, user_email, birth_date, create_time, update_time, 
+			user_id, full_name, user_email, msisdn, birth_date, create_time, update_time, 
 			date_part('year', age(birth_date)) as age
 		FROM ` + b.tableName + `
 		WHERE
@@ -102,7 +102,7 @@ func (b *postgresRepository) FetchFilterName(ctx context.Context, name string, c
 	users = make([]models.User, 0)
 	for rows.Next() {
 		var user models.User
-		err = rows.Scan(&user.ID, &user.Name, &user.Email, &user.BirthDate, &user.CreatedAt, &user.UpdatedAt, &user.Age)
+		err = rows.Scan(&user.ID, &user.Name, &user.Email, &user.MSISDN, &user.BirthDate, &user.CreatedAt, &user.UpdatedAt, &user.Age)
 
 		users = append(users, user)
 	}
