@@ -34,7 +34,7 @@ func (u *userUseCase) FetchAll(ctx context.Context, name string, page int) (resp
 
 	// Pagination logic
 	maxPage := 18
-	start := page - maxPage/2
+	start := page - maxPage/2 + 1
 	if start < 1 {
 		start = 1
 	}
