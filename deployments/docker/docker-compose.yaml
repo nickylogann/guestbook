@@ -1,0 +1,18 @@
+version: '2'
+services:
+  app:
+    image: golang:alpine
+    volumes:
+      - ../../:/go/src/github.com/nickylogan/guestbook
+    env_file:
+      - ../../configs/.env.development
+    environment:
+      - ENVIRONMENT=development
+    working_dir: /go/src/github.com/nickylogan/guestbook
+    command: go run ./cmd/app/main.go
+    links:
+      - redis
+    ports:
+      - "8080:8080"
+  redis:
+    image: redis:alpine
