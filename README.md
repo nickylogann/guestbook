@@ -13,5 +13,5 @@ Make sure these are installed on your machine:
 1. Create a copy of `.env.example` file and name it into `.env.development`
 2. Fill up the variables accordingly
 
-To run the application, run `make deploy` 
+To run the application, run `make run` 
 
