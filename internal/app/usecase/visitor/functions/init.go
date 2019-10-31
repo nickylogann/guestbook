@@ -1,8 +1,8 @@
 package functions
 
 import (
-	"github.com/nickylogan/guestbook/internal/endpoint/repository/visitor"
-	. "github.com/nickylogan/guestbook/internal/endpoint/usecase/visitor"
+	"github.com/nickylogan/guestbook/internal/app/repository/visitor"
+	. "github.com/nickylogan/guestbook/internal/app/usecase/visitor"
 )
 
 type visitorUseCase struct {

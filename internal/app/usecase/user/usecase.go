@@ -3,7 +3,7 @@ package user
 import (
 	"context"
 
-	"github.com/nickylogan/guestbook/internal/endpoint/usecase/user/models"
+	"github.com/nickylogan/guestbook/internal/app/usecase/user/models"
 )
 
 // UseCase represents use case related to the user

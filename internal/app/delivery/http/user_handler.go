@@ -9,8 +9,8 @@ import (
 
 	"github.com/labstack/echo"
 
-	"github.com/nickylogan/guestbook/internal/endpoint/usecase/user"
-	"github.com/nickylogan/guestbook/internal/endpoint/usecase/visitor"
+	"github.com/nickylogan/guestbook/internal/app/usecase/user"
+	"github.com/nickylogan/guestbook/internal/app/usecase/visitor"
 	"github.com/nickylogan/guestbook/internal/pkg/utils/template"
 )
 

@@ -1,6 +1,6 @@
 package models
 
-import "github.com/nickylogan/guestbook/internal/endpoint/models"
+import "github.com/nickylogan/guestbook/internal/app/models"
 
 type UserResponse struct {
 	Data     []models.User

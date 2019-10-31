@@ -3,7 +3,7 @@ package user
 import (
 	"context"
 
-	"github.com/nickylogan/guestbook/internal/endpoint/models"
+	"github.com/nickylogan/guestbook/internal/app/models"
 )
 
 type Repository interface {

@@ -3,7 +3,7 @@ package postgres
 import (
 	"context"
 
-	"github.com/nickylogan/guestbook/internal/endpoint/models"
+	"github.com/nickylogan/guestbook/internal/app/models"
 )
 
 func (b *postgresRepository) Fetch(ctx context.Context, count, offset int) (users []models.User, err error) {

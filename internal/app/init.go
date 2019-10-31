@@ -1,4 +1,4 @@
-package endpoint
+package app
 
 import (
 	"fmt"
@@ -7,15 +7,15 @@ import (
 
 	"github.com/labstack/echo"
 
-	"github.com/nickylogan/guestbook/internal/endpoint/delivery/http"
-	redisRepo "github.com/nickylogan/guestbook/internal/endpoint/repository/visitor/redis"
-	. "github.com/nickylogan/guestbook/internal/endpoint/usecase/user/functions"
-	. "github.com/nickylogan/guestbook/internal/endpoint/usecase/visitor/functions"
+	"github.com/nickylogan/guestbook/internal/app/delivery/http"
+	redisRepo "github.com/nickylogan/guestbook/internal/app/repository/visitor/redis"
+	. "github.com/nickylogan/guestbook/internal/app/usecase/user/functions"
+	. "github.com/nickylogan/guestbook/internal/app/usecase/visitor/functions"
 	"github.com/nickylogan/guestbook/internal/pkg/connection/redis"
 
 	"github.com/joho/godotenv"
 
-	postgresUserRepo "github.com/nickylogan/guestbook/internal/endpoint/repository/user/postgres"
+	postgresUserRepo "github.com/nickylogan/guestbook/internal/app/repository/user/postgres"
 	"github.com/nickylogan/guestbook/internal/pkg/connection/postgres"
 	"github.com/nickylogan/guestbook/internal/pkg/utils/config"
 )

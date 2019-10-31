@@ -4,8 +4,8 @@ import (
 	"context"
 	"math"
 
-	"github.com/nickylogan/guestbook/internal/endpoint/models"
-	uModels "github.com/nickylogan/guestbook/internal/endpoint/usecase/user/models"
+	"github.com/nickylogan/guestbook/internal/app/models"
+	uModels "github.com/nickylogan/guestbook/internal/app/usecase/user/models"
 )
 
 // FetchAll fetches all users with a pagination support

@@ -1,8 +1,8 @@
 package functions
 
 import (
-	rUser "github.com/nickylogan/guestbook/internal/endpoint/repository/user"
-	uUser "github.com/nickylogan/guestbook/internal/endpoint/usecase/user"
+	rUser "github.com/nickylogan/guestbook/internal/app/repository/user"
+	uUser "github.com/nickylogan/guestbook/internal/app/usecase/user"
 )
 
 type userUseCase struct {

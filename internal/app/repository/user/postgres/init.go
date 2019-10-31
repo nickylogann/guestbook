@@ -3,7 +3,7 @@ package postgres
 import (
 	"github.com/tokopedia/sqlt"
 
-	"github.com/nickylogan/guestbook/internal/endpoint/repository/user"
+	"github.com/nickylogan/guestbook/internal/app/repository/user"
 	"github.com/nickylogan/guestbook/internal/pkg/utils/config"
 )
 
