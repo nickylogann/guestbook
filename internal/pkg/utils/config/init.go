@@ -28,7 +28,10 @@ func loadConfigFromEnv() *RuntimeConfig {
 				User:     os.Getenv("PG_USER"),
 				Password: os.Getenv("PG_PASS"),
 			},
-			Redis: RedisConfig{},
+			Redis: RedisConfig{
+				URI:       os.Getenv("REDIS_URI"),
+				MaxActive: 10,
+			},
 		},
 	}
 }

@@ -16,6 +16,6 @@ type PostgresConfig struct {
 
 // RedisConfig abstracts a redis connection config
 type RedisConfig struct {
-	Connection string
-	MaxActive  int
+	URI       string
+	MaxActive int
 }
