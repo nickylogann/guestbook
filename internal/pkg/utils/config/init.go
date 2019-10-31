@@ -10,25 +10,25 @@ type RuntimeConfig struct {
 }
 
 // NewConfig initializes the global config
-func NewConfig() *RuntimeConfig {
+func NewConfig() RuntimeConfig {
 	if cfg != nil {
-		return cfg
+		return *cfg
 	}
 
 	cfg = loadConfigFromEnv()
-	return cfg
+	return *cfg
 }
 
 func loadConfigFromEnv() *RuntimeConfig {
 	return &RuntimeConfig{
 		Database: databaseConfig{
-			Postgres: postgresConfig{
-				Name:     os.Getenv("DB_NAME"),
-				Host:     os.Getenv("DB_HOST"),
-				Password: os.Getenv("DB_PASS"),
-				User:     os.Getenv("DB_USER"),
+			Postgres: PostgresConfig{
+				Host:     os.Getenv("PG_HOST"),
+				Name:     os.Getenv("PG_NAME"),
+				User:     os.Getenv("PG_USER"),
+				Password: os.Getenv("PG_PASS"),
 			},
-			Redis: redisConfig{},
+			Redis: RedisConfig{},
 		},
 	}
 }
